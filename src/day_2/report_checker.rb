@@ -17,7 +17,21 @@ module Day2
 
     sig { returns(Integer) }
     def check_reports
-      @reports.reduce(0) { |sum, report| sum + (check_report(report) == true ? 1 : 0) }
+      @reports.reduce(0) { |sum, report| sum + (check_report_ft(report) == true ? 1 : 0) }
+    end
+
+    sig { params(report: T::Array[Integer]).returns(T::Boolean) }
+    def check_report_ft(report)
+      safe = T.let(check_report(report), T::Boolean)
+      counter = 0
+
+      while !safe && counter < report.size
+        ft_report = report.map(&:clone)
+        ft_report.delete_at(counter)
+        safe = check_report(ft_report)
+        counter += 1
+      end
+      safe
     end
 
     sig { params(report: T::Array[Integer]).returns(T::Boolean) }
