@@ -1,6 +1,5 @@
 # typed: strict
 
-require_relative("file_reader")
 require_relative("level_direction")
 
 module Day2
