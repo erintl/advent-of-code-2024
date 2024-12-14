@@ -28,7 +28,7 @@ module Day5
         update.valid?(@page_rules)
       end
 
-      invalid_updates.map { |update| update.fix2(@page_rules) }.map(&:middle_page).sum
+      invalid_updates.map { |update| update.fix(@page_rules) }.map(&:middle_page).sum
     end
 
     sig { params(filename: String).void }
